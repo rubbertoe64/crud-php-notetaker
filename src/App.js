@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import './App.css';
 import ListUser from './components/ListUser'
 import CreateUser from'./components/CreateUser'
+import EditUsers from './components/EditUsers';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route index element={<ListUser/>} />
             <Route path='user/create' element={<CreateUser />} />
+            <Route path='user/:id/edit' element={<EditUsers />} />
           </Routes>
         </BrowserRouter>
       </div>
