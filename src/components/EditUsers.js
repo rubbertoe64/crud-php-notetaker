@@ -7,6 +7,8 @@ export default function EditUsers() {
     const [inputs, setInputs] = useState(
         {name: '', email: '', mobile: ''}
     );
+
+    const [message, setMessage] = useState('')
     const {id} = useParams();
 
     useEffect(() => {
@@ -30,6 +32,7 @@ export default function EditUsers() {
         event.preventDefault();
         axios.put(`http://localhost/react/api/${id}`, inputs).then(function(response) {
             console.log(response)
+            setMessage(response.data.message)
         })
         
     }
@@ -62,7 +65,7 @@ export default function EditUsers() {
 
         </form>
         </div>
-        <div className="col-2"></div>
+        <div>{message}</div>
     </div>
     )
 
