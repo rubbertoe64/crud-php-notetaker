@@ -1,9 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function CreateUser() {
     
     const [inputs ,setInputs] = useState([])
+    const [message, setMessage] =useState('')
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -14,6 +16,7 @@ export default function CreateUser() {
         event.preventDefault();
         axios.post('http://localhost/react/api/save', inputs).then(function(response) {
             console.log(response.data)
+            setMessage(response.data.message)
         })
         
     }
@@ -36,10 +39,11 @@ export default function CreateUser() {
                     <label>Mobile</label>
                     <input type='text' className="form-control" name="mobile" onChange={handleChange} />
                 </div>
-                <button type="submit" name="add" className="btn btn-primary">Save</button>
+                <button type="submit" name="add" className="btn btn-primary btn-margin-right">Save</button>
+                <Link to='/'><button className="btn btn-secondary">Back</button></Link>
             </form>
             </div>
-            <div className="col-2"></div>
+            <div>{message}</div>
         </div>
     )
 }
